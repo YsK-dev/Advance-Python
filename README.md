@@ -1,2 +1,2 @@
 # Advance-Python
-ejıkdhnıfkweb
+learn python
