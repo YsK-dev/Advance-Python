@@ -1,13 +1,28 @@
 def counter(max):
     num = 1
-    numbers =[]
 
     while num <= max:
-        numbers.append(num)
+        yield num
+    
         num += 1
 
-    return numbers
 
-result = counter(20)
 
-print(result)
+generator = counter(20)
+
+# print(dir(generator))
+
+# print(next(generator))
+# print(next(generator))
+# print(next(generator))
+
+# for i in generator:
+#     print(i)
+
+# result = list(generator)
+
+# print(result)
+
+lisT = (i for i in range(1,20))
+
+print(next(lisT))
