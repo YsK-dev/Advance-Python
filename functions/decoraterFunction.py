@@ -6,11 +6,11 @@ def greet(fn):
     return inner
     
 @greet
-def goodMorning():
-    print("Good Morning today I had a bad dream :/")
+def goodMorning(typeofdream):
+    print(f"Good Morning today I had a {typeofdream} dream :/")
 @greet
-def intro():
-     print("Hi! My name is YsK")
+def intro(name):
+     print(f"Hi! My name is {name}")
 
 
 # reultG = greet(goodMorning)
@@ -20,5 +20,5 @@ def intro():
 # resultI = greet(intro)
 # resultI()
 
-goodMorning()
+goodMorning("good")
 intro()
