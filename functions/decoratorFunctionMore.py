@@ -13,5 +13,5 @@ def gm(name):
 def gd(name):
     print(f"Good days my name is {name}")
 
-gm("yusuf")
+gm("yusuf")#example usage
 gd("yakup")
