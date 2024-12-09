@@ -8,9 +8,17 @@ text = "Yusuf sertkaya Python Javascript SQL html css c++  15-may-2025 15.may.20
 
 #pattern = r"\w+@[a-z]+(\.[a-z]{2,3})+"
 
-pattern = r"\+\d{2}[-\s\.]\d{3}-\d{3}[-\s\.]\d{2}[-\s\.]\d{2}"
-matches = re.finditer(pattern, text)
+
+#pattern = r"\+\d{2}([-\s\.])\d{3}-\d{3}([-\s\.])\d{2}([-\s\.])\d{2}"
+
+phone_pattern = r"\+\d{2}([-\s\.]\d{3}){2}([-\s\.]\d{2}){2}"
+email_pattern = r"\w+@[a-z]+\.[a-z]{2,3}"
+date_pattern = r"\d{2}[-./][a-zA-Z0-9]{2,3}[-./]\d{4}"
+# Combined pattern
+combinedPattern = f"({phone_pattern})|({email_pattern})|({date_pattern})"
+
+matches = re.finditer(combinedPattern, text)
 
 for match in matches:
-    print(match)
+    print(match.group())
 
