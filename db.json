@@ -1,0 +1,22 @@
+{
+  "users": {
+    "YsK": {
+      "firstName": "Yusuf",
+      "lastName": "Sertkya"
+    },
+    "YK": {
+      "firstName": "Yakup",
+      "lastName": "Sertkya"
+    }
+  },
+  "products": {
+    "3": {
+      "title": "Ultra",
+      "price": 3455
+    },
+    "1": {
+      "title": "Apple",
+      "price": 507992895602
+    }
+  }
+}
