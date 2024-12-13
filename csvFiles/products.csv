@@ -1,0 +1,16 @@
+ProductID,ProductName,Category,Price,Stock,Description
+ireless Mouse,Electronics,15.99,150,Ergonomic wireless mouse with USB receiver
+2,Mechanical Keyboard,Electronics,59.99,80
+3,Running Shoes,Sports,45.00,200
+4,Smartphone,Electronics,399.99,50
+5,Backpack,Accessories,29.50,120
+6,Desk Lamp,Furniture,12.99,300
+7,Notebook,Stationery,2.49,500
+8,Headphones,Electronics,25.99,90
+9,T-Shirt,Clothing,9.99,250
+10,Travel Mug,Accessories,14.99,180
+Furniture,12.99,300,Adjustable LED desk lamp
+7,Notebook,Stationery,2.49,500,100-page lined notebook
+8,Headphones,Electronics,25.99,90,Over-ear wired headphones with mic
+9,T-Shirt,Clothing,9.99,250,100% cotton plain white t-shirt
+10,Travel Mug,Accessories,14.99,180,Insulated stainless steel travel mug
