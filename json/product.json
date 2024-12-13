@@ -1,0 +1,12 @@
+{
+  "id": 56,
+  "title": "Macbook air 15.3",
+  "price": "20000",
+  "rating": "4.7",
+  "category": "laptopım",
+  "colours": [
+    "grey",
+    "black",
+    "Space gray"
+  ]
+}
