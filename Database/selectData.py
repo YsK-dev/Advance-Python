@@ -8,11 +8,15 @@ db = mysql.connector.connect(
 )
 cursor = db.cursor()
 
-sql = "SELECT * FROM products"
-
+#sql = "SELECT * FROM products"
+sql = "SELECT id,name FROM products" #better because I dont need other values yet 
 cursor.execute(sql)
 
-productsResult=cursor.fetchall()
+#productsResult=cursor.fetchall()
 
-for p in productsResult:
-    print(p[0],p[1])
+#for p in productsResult:
+#    print(p[0],p[1])
+
+productResult=cursor.fetchone()
+
+print(productResult) #I cant use for loop beacuse I already fetched one :)
