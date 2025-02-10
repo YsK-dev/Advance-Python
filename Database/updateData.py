@@ -41,3 +41,5 @@ def updateDatabyID(name, price, id):
 
 # Call the function to update the product with id=4
 updateDatabyID("Huawei", 13445434, 4)
+
+#With queries to run and tasks to fulfill,
