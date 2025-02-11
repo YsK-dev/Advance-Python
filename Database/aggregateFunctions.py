@@ -9,7 +9,8 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
-sql ="Select Count(*) from products"
+#sql ="Select Count(*) from products"
+sql ="Select AVG(price) from products"
 
 cursor.execute(sql)
 
