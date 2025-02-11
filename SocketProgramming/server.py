@@ -16,6 +16,6 @@ data = clientSocket.recv(1024)  # Listen to their message. 1024 is the maximum n
 clientSocket.sendall(data)  # Say the same message back to them like a mirror .
 
 
-clientSocket.close()  
+clientSocket.close() 
 serverSocket.close()  
 

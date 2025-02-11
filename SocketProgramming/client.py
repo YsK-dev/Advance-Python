@@ -9,5 +9,5 @@ clientSocket.connect((HOST, PORT))
 clientSocket.sendall(b"Hello, Server I am client :) ")
 # The "b" before the message means we're sending it in a special format (bytes).
 data = clientSocket.recv(1024)
-print("hurreyy Received !!!", data.decode())
+print(" Received", data.decode())
 clientSocket.close()
