@@ -1,34 +1,36 @@
 import time
 import multiprocessing
 
-squareList  = []
-cubeList = []
 
-def calculateSquare(numbers):
+
+def calculateSquare(numbers,List):
     global squareList
     print("Calculating Square of numbers...")
 
-    for n in numbers:
+    for index,value in enumerate(numbers):
         time.sleep(0.3)
         #print("Square of numbers: ", n * n)
-        squareList.append(n * n )
+        List[index] = value * value
 
-def calculateCube(numbers):
+def calculateCube(numbers,List):
     global cubeList
     print("Calculating Cube of numbers... ")
 
-    for n in numbers:
+    for index,n in enumerate(numbers):
         time.sleep(0.3)
         #print("Cube is:", n * n * n)
-        cubeList.append(n*n*n)
+        List[index]=n*n*n
 
 if __name__ == "__main__":
     arr = [3, 5, 76, 34, 45, 81]
 
     t = time.time()
+    squareList  = multiprocessing.Array('i',len(arr))
+    cubeList = multiprocessing.Array('i',len(arr))
+    # value = multiprocessing.Value('i',) i for index 
 
-    p1 = multiprocessing.Process(target=calculateSquare, args=(arr,))
-    p2 = multiprocessing.Process(target=calculateCube, args=(arr,))
+    p1 = multiprocessing.Process(target=calculateSquare, args=(arr, squareList))
+    p2 = multiprocessing.Process(target=calculateCube, args=(arr, cubeList))
 
     p1.start()
     p2.start()
@@ -38,15 +40,5 @@ if __name__ == "__main__":
 
     print("The time has been spent:", time.time() - t)
     print("--------------------------------")
-
-    t = time.time()
-
-    calculateSquare(arr)
-
-    calculateCube(arr)
-
-
-
-    print("The time has been spent:", time.time() - t)
-    print("This is square list:",squareList)
-    print("This is cube list:",cubeList)
+    print("This is square list:",squareList[:])
+    print("This is cube list:",cubeList[:])
