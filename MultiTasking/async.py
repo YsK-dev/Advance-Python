@@ -10,9 +10,9 @@ async def fetchData(id,delay):
 
 
 async def sayhiTo():
-    task1 = fetchData(1,3)
-    task2 = fetchData(2,2)
-    task3 = fetchData(3,1)
+    task1 = asyncio.create_task(fetchData(1,3))
+    task2 = asyncio.create_task(fetchData(2,2))
+    task3 = asyncio.create_task(fetchData(3,1))
 
     result1  = await task1
     print("here is the result: ", result1)
