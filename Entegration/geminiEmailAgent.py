@@ -1,5 +1,5 @@
 import smtplib
-from email.mime.text import MIMEText
+from email.mime.text import MIMEText  # bu otamatik mail için
 import google.generativeai as genai
 
 # Configuration
@@ -8,7 +8,7 @@ SMTP_PORT = 587
 SMTP_LOGIN = "85a5cd001@smtp-brevo.com"  # Replace with your SMTP login
 SMTP_PASSWORD = "G5gdz9mjtkMJx46R"  # Replace with your SMTP password
 EMAIL_SENDER = "srtkyyusuf@gmail.com"
-EMAIL_RECEIVER = "211805033@stu.adu.edu.tr"
+EMAIL_RECEIVER = "221805081@stu.adu.edu.tr"
 
 # Set up your Gemini API key
 GEMINI_API_KEY = "AIzaSyByZjU7CYWl3ZlwKBuzo_twLdLBfZKb5DE"  # Replace with your Gemini API key
@@ -18,9 +18,9 @@ genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-pro")
 
 # Function to generate email content using Gemini
-def generate_email_content(topic):
-    prompt = f"Write a professional email about the following topic: {topic}. Include project requirements, deadlines, and any other relevant details."
-    
+def generate_email_content(topic, name):
+    prompt = f"Write a professional email about the following topic: {topic}. Include project requirements, deadlines, and any other relevant details. to {name} YOUR NAME İS yusuf sertkaya"
+
     try:
         # Generate content using Gemini
         response = model.generate_content(prompt)
@@ -51,18 +51,19 @@ def send_email(subject, body):
 
 # Main function
 def main():
+    name = input("Enter to who we write the E-mail: ")
     # Get user input for the topic
     topic = input("Enter the topic or project requirement: ")
 
     # Generate email content using Gemini
     print("Generating email content...")
-    email_body = generate_email_content(topic)
-    
+    email_body = generate_email_content(topic, name)
+
     if email_body:
         print("Generated Email Content:\n", email_body)
 
         # Send the email
-        email_subject = f"Project Requirements: {topic}"
+        email_subject = f"Project Requirements: {topic} to {name}"
         send_email(email_subject, email_body)
     else:
         print("Failed to generate email content. Please check your Gemini API key and configuration.")
