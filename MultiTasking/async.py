@@ -1,9 +1,12 @@
-import time
+import asyncio
 
-def sayhiTo(name):
-    time.sleep(2)
+async def sayhiTo(name):
+    
     print("\nwell hello")
+    await asyncio.sleep(2)
     print(name)
 
-sayhiTo("yakup")
+coroutineObject = sayhiTo("yakup")
+
+asyncio.run(coroutineObject)
 
