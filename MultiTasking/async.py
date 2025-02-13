@@ -1,12 +1,23 @@
 import asyncio
 
-async def sayhiTo(name):
+async def fetchData(delay):
+
+    print("fetching something I guess")
+    await asyncio.sleep(3)
+    print("fetched some data o ye")
+    return {"Data": "bla bla bla "}
+
+
+async def sayhiTo():
     
     print("\nwell hello")
-    await asyncio.sleep(2)
-    print(name)
+    task = fetchData(3)
+    result = await task
 
-coroutineObject = sayhiTo("yakup")
+    print(f"HEre is fetched data: {result}")
+    print("Finitto ")
+ 
 
-asyncio.run(coroutineObject)
+
+asyncio.run(sayhiTo())
 
