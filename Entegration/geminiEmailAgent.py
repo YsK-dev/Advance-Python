@@ -5,13 +5,13 @@ import google.generativeai as genai
 # Configuration
 SMTP_SERVER = "smtp-relay.brevo.com"
 SMTP_PORT = 587
-SMTP_LOGIN = "85a5cd001@smtp-brevo.com"  # Replace with your SMTP login
-SMTP_PASSWORD = "G5gdz9mjtkMJx46R"  # Replace with your SMTP password
-EMAIL_SENDER = "srtkyyusuf@gmail.com"
-EMAIL_RECEIVER = "221805081@stu.adu.edu.tr"
+SMTP_LOGIN = "stmplogin"  # Replace with your SMTP login
+SMTP_PASSWORD = "yourpassword"  # Replace with your SMTP password
+EMAIL_SENDER = "yourmail"
+EMAIL_RECEIVER = "recivermail"
 
 # Set up your Gemini API key
-GEMINI_API_KEY = "AIzaSyByZjU7CYWl3ZlwKBuzo_twLdLBfZKb5DE"  # Replace with your Gemini API key
+GEMINI_API_KEY = "yourkey"  # Replace with your Gemini API key
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Initialize the Gemini model
