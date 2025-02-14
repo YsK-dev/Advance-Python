@@ -1,17 +1,19 @@
 import smtplib
-from email.mime.text import MIMEText  # bu otamatik mail için
+from email.mime.text import MIMEText
 import google.generativeai as genai
+import tkinter as tk
+from tkinter import scrolledtext, messagebox
 
 # Configuration
 SMTP_SERVER = "smtp-relay.brevo.com"
 SMTP_PORT = 587
-SMTP_LOGIN = "stmplogin"  # Replace with your SMTP login
-SMTP_PASSWORD = "yourpassword"  # Replace with your SMTP password
-EMAIL_SENDER = "yourmail"
-EMAIL_RECEIVER = "recivermail"
+SMTP_LOGIN = "85a5cd001@smtp-brevo.com"   # Replace with your SMTP login
+SMTP_PASSWORD = "your-smtp-key"  # Replace with your SMTP password
+EMAIL_SENDER = "srtkyyusuf@gmail.com"
+EMAIL_RECEIVER = "satılıkmışEmail"
 
 # Set up your Gemini API key
-GEMINI_API_KEY = "yourkey"  # Replace with your Gemini API key
+GEMINI_API_KEY = "your-api-key"  # Replace with your Gemini API key
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Initialize the Gemini model
@@ -44,30 +46,74 @@ def send_email(subject, body):
             s.login(SMTP_LOGIN, SMTP_PASSWORD)  # Log in to the SMTP server
             s.sendmail(EMAIL_SENDER, EMAIL_RECEIVER, message.as_string())  # Send the email
         print("Email sent successfully!")
+        messagebox.showinfo("Success", "Email sent successfully!")
     except smtplib.SMTPAuthenticationError:
         print("Error: Authentication failed. Check your login credentials.")
+        messagebox.showerror("Error", "Authentication failed. Check your login credentials.")
     except smtplib.SMTPException as e:
         print(f"Error: Unable to send email. {e}")
+        messagebox.showerror("Error", f"Unable to send email. {e}")
 
-# Main function
-def main():
-    name = input("Enter to who we write the E-mail: ")
-    # Get user input for the topic
-    topic = input("Enter the topic or project requirement: ")
+# Function to handle the "Generate Email" button click
+def on_generate_email():
+    name = name_entry.get()
+    topic = topic_entry.get()
+
+    if not name or not topic:
+        messagebox.showwarning("Input Error", "Please enter both the recipient's name and the topic.")
+        return
 
     # Generate email content using Gemini
-    print("Generating email content...")
     email_body = generate_email_content(topic, name)
 
     if email_body:
-        print("Generated Email Content:\n", email_body)
+        email_text.delete(1.0, tk.END)  # Clear the text area
+        email_text.insert(tk.END, email_body)  # Insert the generated email content
 
-        # Send the email
-        email_subject = f"Project Requirements: {topic} to {name}"
-        send_email(email_subject, email_body)
+        # Automatically set the subject in the subject field
+        subject_entry.delete(0, tk.END)  # Clear the subject field
+        subject_entry.insert(0, f"Project Requirements: {topic} to {name}")  # Set the subject
     else:
-        print("Failed to generate email content. Please check your Gemini API key and configuration.")
+        messagebox.showerror("Error", "Failed to generate email content. Please check your Gemini API key and configuration.")
 
-# Run the script
-if __name__ == "__main__":
-    main()
+# Function to handle the "Send Email" button click
+def on_send_email():
+    subject = subject_entry.get()
+    body = email_text.get(1.0, tk.END)
+
+    if not subject or not body.strip():
+        messagebox.showwarning("Input Error", "Please ensure the subject and email body are filled.")
+        return
+
+    # Send the email
+    send_email(subject, body)
+
+# Create the main window
+root = tk.Tk()
+root.title("Email Generator and Sender")
+
+# Create and place widgets
+tk.Label(root, text="Recipient's Name:").grid(row=0, column=0, padx=10, pady=10, sticky="e")
+name_entry = tk.Entry(root, width=50)
+name_entry.grid(row=0, column=1, padx=10, pady=10)
+
+tk.Label(root, text="Email Topic:").grid(row=1, column=0, padx=10, pady=10, sticky="e")
+topic_entry = tk.Entry(root, width=50)
+topic_entry.grid(row=1, column=1, padx=10, pady=10)
+
+generate_button = tk.Button(root, text="🪄Generate Email", command=on_generate_email)
+generate_button.grid(row=2, column=0, columnspan=2, pady=10)
+
+tk.Label(root, text="Email Subject:").grid(row=3, column=0, padx=10, pady=10, sticky="e")
+subject_entry = tk.Entry(root, width=50)
+subject_entry.grid(row=3, column=1, padx=10, pady=10)
+
+tk.Label(root, text="Email Body:").grid(row=4, column=0, padx=10, pady=10, sticky="ne")
+email_text = scrolledtext.ScrolledText(root, width=60, height=15)
+email_text.grid(row=4, column=1, padx=10, pady=10)
+
+send_button = tk.Button(root, text="📩Send Email", command=on_send_email)
+send_button.grid(row=5, column=0, columnspan=2, pady=10)
+
+# Run the application
+root.mainloop()
